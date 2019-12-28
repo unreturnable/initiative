@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Initiative</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+  </head>
+
+  <body>
+    <div id="container">
+      <h1>D&D Initiative Tracker</h1>
+      <p id="header-text">
+        Made by <a href="http://unreturnable.net/" target="_blank">Isabel Jenkins</a> because I
+        couldn't find an Initiative tracker I liked. You can use ENTER as a shortcut for adding a
+        character, and the LEFT and RIGHT arrow keys as  shortcut for moving between turns. The code
+        for this project can be found on <a href="https://github.com/unreturnable/initiative" target="_blank">Github</a>.
+      </p>
+
+      <div class="button" onclick="previousTurn()">
+        Previous Turn
+      </div>
+
+      <div class="button" onclick="nextTurn()">
+        Next Turn
+      </div>
+
+      <div id="tracker"></div>
+    </div>
+  </body>
+
+  <script id="initiative-template" type="x-tmpl-mustache">
+    <table class="character-table">
+      <th class="initiative">
+        Initiative
+      </th>
+      <th class="name">
+        Name
+      </th>
+      <th class="hitpoints">
+        Hitpoints
+      </th>
+      <th class="close"></th>
+      
+      <tr id="new-row">
+        <td class="initiative">
+          <input type="number" id="score">
+        </td>
+        <td class="name">
+          <input type="text" id="name">
+        </td>
+        <td class="hitpoints">
+          <input type="number" id="hitpoints">
+        </td>
+        <td class="close">
+          <button id="add-character" class="button" onclick="submitCharacter()">Add</button>
+        </td>
+      </tr>
+      
+      {{ #. }}
+        <tr class="{{ turn }}">
+          <td>
+            <input type="number" id="initiative-{{ index }}" onchange="updateInitiative({{ index}})" value="{{ score }}">
+          </td>
+          <td>
+            <input type="text" id="name-{{ index }}" onchange="updateName({{ index}})" value="{{ name }}">
+          </td>
+          <td>
+            <input type="number" id="hitpoints-{{ index }}" onchange="updateHitpoints({{ index}})" value="{{ hitpoints }}">
+          </td>
+          <td>
+            <button class="cross" onclick="removeCharacter({{ index }})">X</button>
+          </td>
+        </tr>
+      {{ /. }}
+    </table>
+  </script>
+  
+  <script src="faker.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js"></script>
+  <script src="./index.js"></script>
+</html>
+
