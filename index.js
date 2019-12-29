@@ -74,6 +74,7 @@ function addToTracker(name, score, hitpoints) {
   
   if (trackedCharacters.length === 0) {
     toAdd.turn = 'turn'
+    document.getElementById('footer-text').style.display = 'none'
   }
 
   trackedCharacters.push(toAdd)
@@ -131,6 +132,10 @@ function removeCharacter(index) {
     }
 
     trackedCharacters.splice(index, 1)
+  }
+
+  if (trackedCharacters.length === 0) {
+    document.getElementById('footer-text').style.display = 'block' 
   }
 
   sortCharacters()
