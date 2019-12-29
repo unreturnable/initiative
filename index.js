@@ -2,18 +2,34 @@ let trackedCharacters = []
 
 // Render when the page first loads
 render()
+resetFocus()
 
 document.addEventListener("keyup", function(event) {
-  // Number 13 is the "Enter" key on the keyboard
-  if (event.keyCode === 13) {
-    event.preventDefault()
-    document.getElementById('add-character').click()
-  } else if (event.keyCode === 37) {
-    event.preventDefault()
-    previousTurn()
-  } else if (event.keyCode === 39) {
-    event.preventDefault()
-    nextTurn()
+  switch (event.keyCode) {
+    case 13:
+      event.preventDefault()
+      if (checkFocus()) {
+        document.getElementById('add-character').click()
+      }
+      break;
+    case 37:
+      event.preventDefault()
+      previousTurn()
+      break;
+    case 39:
+      event.preventDefault()
+      nextTurn()
+      break;
+    case 46:
+      if (trackedCharacters.length !== 0) {
+        let element = trackedCharacters.find((el) => {
+          return el.turn == 'turn'
+        })
+
+        removeCharacter(parseInt(element.index))
+      }
+
+      break;
   }
 })
 
@@ -25,6 +41,7 @@ function submitCharacter() {
   addToTracker(name, score, hitpoints)
   render()
   clearInputs()
+  resetFocus()
 }
 
 function clearInputs() {
@@ -65,7 +82,7 @@ function addToTracker(name, score, hitpoints) {
 
 function sortCharacters() {
   trackedCharacters.sort((a, b) => {
-    return parseInt(b.score) - parseInt(a.score)
+    return parseFloat(b.score) - parseFloat(a.score)
   })
 
   for (let i in trackedCharacters) {
@@ -77,6 +94,19 @@ function render() {
   let template = document.getElementById('initiative-template').innerHTML
   let rendered = Mustache.render(template, trackedCharacters)
   document.getElementById('tracker').innerHTML = rendered
+}
+
+function checkFocus() {
+  let focus = document.activeElement
+
+  let scoreFocus = focus === document.getElementById('score')
+  let nameFocus = focus === document.getElementById('name')
+  let hitpointsFocus = focus === document.getElementById('hitpoints')
+
+  return scoreFocus || nameFocus || hitpointsFocus
+}
+
+function resetFocus() {
   document.getElementById('score').focus()
 }
 
@@ -108,6 +138,11 @@ function removeCharacter(index) {
 }
 
 function previousTurn() {
+  // Check there are characters
+  if (trackedCharacters.length === 0) {
+    return
+  }
+
   let element = trackedCharacters.find((el) => {
     return el.turn == 'turn'
   })
@@ -125,6 +160,11 @@ function previousTurn() {
 }
 
 function nextTurn() {
+  // Check there are characters
+  if (trackedCharacters.length === 0) {
+    return
+  }
+  
   let element = trackedCharacters.find((el) => {
     return el.turn == 'turn'
   })

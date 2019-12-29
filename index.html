@@ -7,53 +7,45 @@
 
   <body>
     <div id="container">
-      <h1>D&D Initiative Tracker</h1>
-      <p id="header-text">
-        Made by <a href="http://unreturnable.net/" target="_blank">Isabel Jenkins</a> because I
-        couldn't find an Initiative tracker I liked. You can use ENTER as a shortcut for adding a
-        character, and the LEFT and RIGHT arrow keys as  shortcut for moving between turns. The code
-        for this project can be found on <a href="https://github.com/unreturnable/initiative" target="_blank">Github</a>.
-      </p>
+      <div id="left-side">
+        <h1>D&D Initiative Tracker</h1>
+        <p>
+          Made by <a href="http://unreturnable.net/" target="_blank">Isabel Jenkins</a> because I
+          couldn't find an Initiative tracker I liked. You can use ENTER as a shortcut for adding a
+          character, and the LEFT and RIGHT arrow keys for moving between turns and DELETE to remove
+          a character whos turn it is. The code for this project can be found on 
+          <a href="https://github.com/unreturnable/initiative" target="_blank">Github</a>.
+        </p>
+      
+        <div class="button" onclick="previousTurn()">
+          Previous Turn
+        </div>
 
-      <div class="button" onclick="previousTurn()">
-        Previous Turn
+        <div class="button" onclick="nextTurn()">
+          Next Turn
+        </div>
       </div>
-
-      <div class="button" onclick="nextTurn()">
-        Next Turn
+    
+      <div id="right-side">
+        <div id="tracker"></div>
       </div>
-
-      <div id="tracker"></div>
     </div>
   </body>
 
   <script id="initiative-template" type="x-tmpl-mustache">
     <table class="character-table">
       <th class="initiative">
-        Initiative
+        <input type="number" id="score" placeholder="Initiative">
       </th>
       <th class="name">
-        Name
+        <input type="text" id="name" placeholder="Name">
       </th>
       <th class="hitpoints">
-        Hitpoints
+        <input type="number" id="hitpoints" placeholder="Hit Points">
       </th>
-      <th class="close"></th>
-      
-      <tr id="new-row">
-        <td class="initiative">
-          <input type="number" id="score">
-        </td>
-        <td class="name">
-          <input type="text" id="name">
-        </td>
-        <td class="hitpoints">
-          <input type="number" id="hitpoints">
-        </td>
-        <td class="close">
-          <button id="add-character" class="button" onclick="submitCharacter()">Add</button>
-        </td>
-      </tr>
+      <th class="close">
+        <button id="add-character" class="button" onclick="submitCharacter()">Add</button>
+      </th>
       
       {{ #. }}
         <tr class="{{ turn }}">
