@@ -4,7 +4,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Noto Sans', sans-serif;
-  background-color: #00A0A6;
 }
 
 input[type=text] {
@@ -31,6 +30,7 @@ input[type=number] {
   padding-bottom: 10px;
   padding-left: 30px;
   padding-right: 30px;
+  background-color: #00A0A6;
 }
 
 #right-side {
@@ -93,4 +93,52 @@ input[type=number] {
 
 .turn {
   background-color: #F00;
+}
+
+#mobile-header {
+  display: none;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 420px) {
+  #mobile-header {
+    display: block;
+  }
+
+  #left-side {
+    display: none;
+    position: fixed;
+    width: 85vw;
+    height: 100vh;
+  }
+
+  #right-side {
+    width: 100vw;
+  }
+
+  input[type=text] {
+    font-size: 8pt;
+    padding: 12px 10px;
+  }
+
+  input[type=number] {
+    font-size: 8pt;
+    padding: 12px 5px;
+  }
+
+  .button {
+    padding: 12px 10px;
+    font-size: 12px;
+  }
+
+  #footer-text {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  #mobile-header {
+    display: flex;
+    background-color: #00A0A6;
+    font-size: 18pt;
+  }
 }

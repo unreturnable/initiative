@@ -185,3 +185,13 @@ function nextTurn() {
 
   render()
 }
+
+function infoClick() {
+  let leftPanel = document.getElementById('left-side')
+
+  if (leftPanel.style.display === 'block') {
+    leftPanel.style.display = 'none'
+  } else {
+    leftPanel.style.display = 'block'
+  }
+}
