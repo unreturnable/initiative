@@ -99,10 +99,23 @@ input[type=number] {
   display: none;
 }
 
+#mobile-turns {
+  display: none;
+}
+
 /* Mobile Styles */
 @media only screen and (max-width: 420px) {
   #mobile-header {
     display: block;
+  }
+
+  #desktop-turns {
+    display: none;
+  }
+
+  #mobile-turns {
+    display: block;
+    margin-top: 5px;
   }
 
   #left-side {

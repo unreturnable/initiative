@@ -23,18 +23,31 @@
           a character whos turn it is. The code for this project can be found on 
           <a href="https://github.com/unreturnable/initiative" target="_blank">Github</a>.
         </p>
-      
-        <div class="button" onclick="previousTurn()">
-          Previous Turn
-        </div>
+     
+        <div id="desktop-turns">
+          <div class="button" onclick="previousTurn()">
+            Previous Turn
+          </div>
 
-        <div class="button" onclick="nextTurn()">
-          Next Turn
+          <div class="button" onclick="nextTurn()">
+            Next Turn
+          </div>
         </div>
       </div>
 
       <div id="right-side">
+        <div id="mobile-turns">
+          <div class="button" onclick="previousTurn()">
+            Previous Turn
+          </div>
+
+          <div class="button" onclick="nextTurn()">
+            Next Turn
+          </div>  
+        </div>
+
         <div id="tracker"></div>
+        
         <p id="footer-text">
           Use the boxes above to add characters to the tracker.
         </p>
